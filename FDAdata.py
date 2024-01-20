@@ -44,12 +44,6 @@ multi_vit_sen = multivitamin_data[multivitamin_data["PATIENT_AGE"] > 65] #310 se
 
 #Splices SBP data into age groups 
 sbp_df_baby = sbp_df_men[sbp_df_men["PATIENT_AGE"] < 5] #no babies
-sbp_df_toddler = sbp_df_men[(sbp_df_men["PATIENT_AGE"] >= 5) & (sbp_df_men["PATIENT_AGE"] < 13)]
-
-#Data set only containing Vitamin D
-vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
-gender_counts = vtmd_df["SEX"].value_counts()
-category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
 sbp_df_toddler = sbp_df_men[(sbp_df_men["PATIENT_AGE"] >= 5) & (sbp_df_men["PATIENT_AGE"] < 13)] #no toddlers
 age_counts = sbp_df_men["PATIENT_AGE"].value_counts()
 age_array = []
@@ -62,7 +56,12 @@ for age, reports in age_counts.items():
 
 #Data set only containing vitamin products
 vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
+gender_counts = vtmd_df["SEX"].value_counts()
+category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
 
+
+#Data set only containing Vitamin D
+vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 
 
 vtmd_df = vtmd_df[vtmd_df["SEX"]!="Not Reported"]
