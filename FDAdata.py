@@ -78,6 +78,25 @@ vtmd_df = vtmd_df[vtmd_df["SEX"]!="Not Reported"]
 plt.figure(figsize=(10, 6)) 
 
 
+# for product in vtmd_df["PRODUCT"]:
+#     if product == "CENTRUM SILVER MEN'S 50+(MULTIMINERALS, MULTIVITAMINS) TABLET":
+#         product = "MEN'S 50+(MULTIMINERALS, MULTIVITAMINS) TABLET"
+vtmd_df['PRODUCT'] = vtmd_df['PRODUCT'].replace(['centrum silver women\'s 50+ (multiminerals, multivitamins) tablet'], 'centrum women multivit/min')
+
+
+multivitamin_women = vtmd_df[vtmd_df['PRODUCT'] == "centrum women multivit/min"] #shape = (618,13)
+multivitamin = vtmd_df[vtmd_df["PRODUCT"] == "multivitamin"]
+vitamin_c = vtmd_df[vtmd_df["PRODUCT"] == "vitamin c"]
+vitamin_d3 = vtmd_df[vtmd_df["PRODUCT"] == "vitamin d3"]
+
+multivitamin_women_men = multivitamin_women[multivitamin_women["SEX"] == "male"] #shape = (,13)
+womens_multivit_counts = multivitamin_women["SEX"].value_counts()
+print(womens_multivit_counts)
+multivitamin_men = multivitamin[multivitamin["SEX"] == "male"] #shape = (, 13)
+vitamin_c_men = vitamin_c[vitamin_c["SEX"] == "male"] #shape = (, 13)
+vitamin_c_women = vitamin_c[vitamin_c["SEX"] == "female"] #shape = (720, 13)
+vitamin_d3_men = vitamin_d3[vitamin_d3["SEX"] == "male"] #shape = (, 13)
+
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None)
 
 plt.xlabel("Products")
