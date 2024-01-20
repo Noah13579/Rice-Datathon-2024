@@ -19,6 +19,7 @@ print(centrum_counts)
 centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
 centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
 centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("wommen", case=False, na=False)]
+#groups together products that have a fuzzywuzzy percentage >= 80
 
 
 #Surface cleaned dataset from which our other datasets are derived
@@ -61,19 +62,26 @@ number_reports = []
 for age, reports in age_counts.items():
     age_array.append(age)
     number_reports.append(age_counts[age])
-# plt.plot(age_array, number_reports)
-# plt.show()
+plt.scatter(age_array, number_reports)
+plt.show()
 
 #Data set only containing vitamin products
-vtmd_df = finished_data[finished_data["PRODUCT"].str.contains("vitamin", case=False, na=False)]
+vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 gender_counts = vtmd_df["SEX"].value_counts()
 category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
+
+
+#Data set only containing Vitamin D
+description_counts = finished_data["DESCRIPTION"].value_counts()
+print(description_counts)
+vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 
 
 vtmd_df = vtmd_df[vtmd_df["SEX"]!="Not Reported"]
 
 
 # Create the bar plot
+plt.figure(figsize=(10, 6)) 
 
 
 # for product in vtmd_df["PRODUCT"]:
@@ -95,16 +103,25 @@ vitamin_c_men = vitamin_c[vitamin_c["SEX"] == "male"] #shape = (, 13)
 vitamin_c_women = vitamin_c[vitamin_c["SEX"] == "female"] #shape = (720, 13)
 vitamin_d3_men = vitamin_d3[vitamin_d3["SEX"] == "male"] #shape = (, 13)
 
+sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None)
 
+<<<<<<< HEAD
 plt.figure(figsize=(16, 8))
 
 occurrence_data_3 = vtmd_df["PRODUCT"].value_counts()
 
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1)
+=======
+>>>>>>> 187d1fe959479741eddd0893025ed3f55f32d555
 plt.xlabel("Products")
 plt.ylabel("Average Age")
 plt.title("Average Age by Products and Sex")
 
 # Show the plot
+<<<<<<< HEAD
 # plt.legend(title="Sex", loc="upper right")
 # plt.show()
+=======
+plt.legend(title="Sex", loc="upper right")
+#plt.show()
+>>>>>>> 187d1fe959479741eddd0893025ed3f55f32d555
