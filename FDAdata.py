@@ -43,5 +43,20 @@ vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 print(vtmd_df.shape)
 gender_counts = vtmd_df["SEX"].value_counts()
 category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
+age_counts = vtmd_df["PATIENT_AGE"].value_counts()
+age_categories = {"<5":0, "<13":0, "<21":0, "<65":0, "65+":0}
+for key, value in age_counts.items():
+    if int(key) < 5:
+        age_categories["<5"] += int(value)
+    elif int(key) < 13:
+        age_categories["<13"] += int(value)
+    elif int(key) < 21:
+        age_categories["<21"] += int(value)
+    elif int(key) < 65:
+        age_categories["<65"] += int(value)
+    else:
+        age_categories["65+"] += int(value)
+
 print(gender_counts)
 print(category_counts)
+print(age_categories)
