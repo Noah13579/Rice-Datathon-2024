@@ -17,8 +17,12 @@ occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 print(occurrence_data_2)
 print(finished_data.shape)
 
-#Data set only containing SBP product
-sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
-print(sbp_df.shape)
-sbp_df = sbp_df.dropna(subset = "PATIENT_AGE")
-print(sbp_df.shape)
+#Data set only containing SBP product reported by men (only one woman reported)
+sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
+sbp_df = sbp_df.dropna(subset = "PATIENT_AGE") #shape = (511, 13)
+sbp_df_men = sbp_df[sbp_df["SEX"] == "Male"] #shape = (510, 13)
+
+#Splices SBP data into age groups 
+sbp_df_baby = sbp_df_men[sbp_df_men["PATIENT_AGE"] < 5] #no babies
+sbp_df_toddler = sbp_df_men[(sbp_df_men["PATIENT_AGE"] >= 5) & (sbp_df_men["PATIENT_AGE"] < 13)]
+print(sbp_df_toddler.shape)
