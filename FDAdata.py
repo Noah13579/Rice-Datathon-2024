@@ -17,6 +17,10 @@ keep_data = occurrence_data[occurrence_data > 475].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
 
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
-
+#lowercases all products 
+finished_data["PRODUCT"] = finished_data["PRODUCT"].str.lower()
+#Data set only containing SBP product
+sbp_df = finished_data.dropna(subset = ["SUPER BETA PROSTATE"])
+print(sbp_df.shape)
 print(finished_data.shape)
-print(occurrence_data_2)
+#print(occurrence_data_2)
