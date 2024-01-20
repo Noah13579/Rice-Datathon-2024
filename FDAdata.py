@@ -13,6 +13,14 @@ cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"] = cleaned_data["CASE_MEDDRA_PREFERRE
 cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
 cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('^centrum', 'centrum vitamin', regex = True)
+centrum_counts = cleaned_data['PRODUCT'].value_counts()['centrum vitamin']
+print(centrum_counts)
+centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
+centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
+centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("wommen", case=False, na=False)]
+
+
 #Surface cleaned dataset from which our other datasets are derived
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 keep_data = occurrence_data[occurrence_data > 400].index
@@ -81,7 +89,7 @@ vitamin_d3 = vtmd_df[vtmd_df["PRODUCT"] == "vitamin d3"]
 
 multivitamin_women_men = multivitamin_women[multivitamin_women["SEX"] == "male"] #shape = (,13)
 womens_multivit_counts = multivitamin_women["SEX"].value_counts()
-print(womens_multivit_counts)
+
 multivitamin_men = multivitamin[multivitamin["SEX"] == "male"] #shape = (, 13)
 vitamin_c_men = vitamin_c[vitamin_c["SEX"] == "male"] #shape = (, 13)
 vitamin_c_women = vitamin_c[vitamin_c["SEX"] == "female"] #shape = (720, 13)
@@ -89,14 +97,14 @@ vitamin_d3_men = vitamin_d3[vitamin_d3["SEX"] == "male"] #shape = (, 13)
 
 
 plt.figure(figsize=(16, 8))
-print(vtmd_df.shape)
+
 occurrence_data_3 = vtmd_df["PRODUCT"].value_counts()
-print(occurrence_data_3)
+
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1)
 plt.xlabel("Products")
 plt.ylabel("Average Age")
 plt.title("Average Age by Products and Sex")
 
 # Show the plot
-plt.legend(title="Sex", loc="upper right")
-plt.show()
+# plt.legend(title="Sex", loc="upper right")
+# plt.show()
