@@ -35,9 +35,14 @@ multivit_male_data = multivitamin_data[multivitamin_data["SEX"] != "female"]
 #Splices SBP data into age groups 
 sbp_df_baby = sbp_df_men[sbp_df_men["PATIENT_AGE"] < 5] #no babies
 sbp_df_toddler = sbp_df_men[(sbp_df_men["PATIENT_AGE"] >= 5) & (sbp_df_men["PATIENT_AGE"] < 13)] #no toddlers
-print(sbp_df_men.shape)
 age_counts = sbp_df_men["PATIENT_AGE"].value_counts()
-print(age_counts)
+age_array = []
+number_reports = []
+for age, reports in age_counts.items():
+    age_array.append(age)
+    number_reports.append(age_counts[age])
+plt.plot(age_array, number_reports)
+plt.show()
 
 #Data set only containing Vitamin D
 vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
