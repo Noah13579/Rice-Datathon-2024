@@ -1,3 +1,3 @@
 import pandas as pd
-df = pd.read_csv('CAERS_ProductBased (1).csv')
-print(df)
+import seaborn as sns
+import matplotlib.pyplot as plt
