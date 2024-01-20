@@ -51,7 +51,7 @@ number_reports = []
 for age, reports in age_counts.items():
     age_array.append(age)
     number_reports.append(age_counts[age])
-plt.scatter(age_array, number_reports)
+plt.plot(age_array, number_reports)
 plt.show()
 
 #Data set only containing Vitamin D
