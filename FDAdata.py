@@ -20,7 +20,7 @@ occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 #lowercases all products 
 finished_data["PRODUCT"] = finished_data["PRODUCT"].str.lower()
 #Data set only containing SBP product
-sbp_df = finished_data.dropna(subset = ["SUPER BETA PROSTATE"])
+sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
 print(sbp_df.shape)
 print(finished_data.shape)
 #print(occurrence_data_2)
