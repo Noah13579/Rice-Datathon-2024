@@ -9,16 +9,24 @@ cleaned_data["PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 keep_data = occurrence_data[occurrence_data > 400].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
-print(occurrence_data)
+#print(occurrence_data)
 
 #lowercases all products 
-finished_data["PRODUCT"] = finished_data["PRODUCT"].str.lower()
+
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
-print(occurrence_data_2)
-print(finished_data.shape)
+#print(occurrence_data_2)
+#print(finished_data.shape)
 
 #Data set only containing SBP product
 sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
-print(sbp_df.shape)
+#print(sbp_df.shape)
 sbp_df = sbp_df.dropna(subset = "PATIENT_AGE")
-print(sbp_df.shape)
+#print(sbp_df.shape)
+
+#Data set only containing Vitamin D
+vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
+print(vtmd_df.shape)
+gender_counts = vtmd_df["SEX"].value_counts()
+category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
+print(gender_counts)
+print(category_counts)
