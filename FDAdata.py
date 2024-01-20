@@ -2,33 +2,35 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+#reads data file and removes rows with EXEMPTION 4 in PRODUCT column
 FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
 cleaned_data = FDAdata[FDAdata["PRODUCT"] != "EXEMPTION 4"]
+
 #transforms columns into lowercase
 cleaned_data["PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
 cleaned_data["DESCRIPTION"] = cleaned_data["DESCRIPTION"].str.lower()
 cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"] = cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"].str.lower()
 cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
+cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
-
+#Surface cleaned dataset from which our other datasets are derived
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 keep_data = occurrence_data[occurrence_data > 400].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
 
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 
-#Data set only containing SBP product reported by men (only one woman reported)
+#Data set only containing SBP product
 sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
+#Drop rows without anything in PATIENT_AGE
 sbp_df = sbp_df.dropna(subset = "PATIENT_AGE") #shape = (511, 13)
+
+#Data set only containing SBP product reported by men (only one woman reported)
 sbp_df_men = sbp_df[sbp_df["SEX"] == "Male"] #shape = (510, 13)
 
-#Data set only containing SBP product
-sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
-sbp_df = sbp_df.dropna(subset = "PATIENT_AGE")
 
 #MultiVitamin Data Split into Sexes
 multivitamin_data = finished_data[finished_data["PRODUCT"] == "multivitamin"]
-multivitamin_data["SEX"] = multivitamin_data["SEX"].str.lower()
 multivit_wom_data = multivitamin_data[multivitamin_data["SEX"] != "male"]
 multivit_male_data = multivitamin_data[multivitamin_data["SEX"] != "female"]
 
