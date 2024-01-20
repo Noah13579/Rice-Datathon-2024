@@ -20,3 +20,11 @@ multivitamin_data = finished_data[finished_data["PRODUCT"] == "multivitamin"]
 multivitamin_data["SEX"] = multivitamin_data["SEX"].str.lower()
 multivit_wom_data = multivitamin_data[multivitamin_data["SEX"] != "male"]
 multivit_male_data = multivitamin_data[multivitamin_data["SEX"] != "female"]
+
+#Data set only containing Vitamin D
+vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
+print(vtmd_df.shape)
+gender_counts = vtmd_df["SEX"].value_counts()
+category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
+print(gender_counts)
+print(category_counts)
