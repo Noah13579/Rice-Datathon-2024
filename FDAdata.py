@@ -31,3 +31,12 @@ multivit_male_data = multivitamin_data[multivitamin_data["SEX"] != "female"]
 sbp_df_baby = sbp_df_men[sbp_df_men["PATIENT_AGE"] < 5] #no babies
 sbp_df_toddler = sbp_df_men[(sbp_df_men["PATIENT_AGE"] >= 5) & (sbp_df_men["PATIENT_AGE"] < 13)]
 print(sbp_df_toddler.shape)
+
+
+#Data set only containing Vitamin D
+vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
+print(vtmd_df.shape)
+gender_counts = vtmd_df["SEX"].value_counts()
+category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
+print(gender_counts)
+print(category_counts)
