@@ -3,8 +3,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
-FDAdata_SEX_rem = FDAdata.dropna(subset = ["SEX"])
-cleaned_data = FDAdata_SEX_rem[FDAdata_SEX_rem["PRODUCT"] != "EXEMPTION 4"]
+cleaned_data = FDAdata[FDAdata["PRODUCT"] != "EXEMPTION 4"]
+#transforms columns into lowercase
 cleaned_data["PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
 cleaned_data["DESCRIPTION"] = cleaned_data["DESCRIPTION"].str.lower()
 cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"] = cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"].str.lower()
@@ -61,6 +61,8 @@ category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
 
 
 #Data set only containing Vitamin D
+description_counts = finished_data["DESCRIPTION"].value_counts()
+print(description_counts)
 vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 
 
@@ -79,4 +81,4 @@ plt.title("Average Age by Products and Sex")
 
 # Show the plot
 plt.legend(title="Sex", loc="upper right")
-plt.show()
+#plt.show()
