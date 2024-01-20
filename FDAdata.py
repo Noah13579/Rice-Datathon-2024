@@ -15,12 +15,14 @@ cleaned_data = FDAdata[FDAdata["PRODUCT"] != "EXEMPTION 4"]
 #print(cleaned_data.shape)
 keep_data = occurrence_data[occurrence_data > 475].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
-
+#lowercases all products 
 finished_data["PRODUCT"] = finished_data["PRODUCT"].str.lower()
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
-#lowercases all products 
+print(occurrence_data_2)
+print(finished_data.shape)
+
 #Data set only containing SBP product
 sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
 print(sbp_df.shape)
-print(finished_data.shape)
-print(occurrence_data_2)
+sbp_df = sbp_df.dropna(subset = "PATIENT_AGE")
+print(sbp_df.shape)
