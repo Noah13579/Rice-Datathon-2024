@@ -105,23 +105,17 @@ vitamin_d3_men = vitamin_d3[vitamin_d3["SEX"] == "male"] #shape = (, 13)
 
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None)
 
-<<<<<<< HEAD
 plt.figure(figsize=(16, 8))
 
 occurrence_data_3 = vtmd_df["PRODUCT"].value_counts()
 
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1)
-=======
->>>>>>> 187d1fe959479741eddd0893025ed3f55f32d555
 plt.xlabel("Products")
 plt.ylabel("Average Age")
 plt.title("Average Age by Products and Sex")
 
 # Show the plot
-<<<<<<< HEAD
 # plt.legend(title="Sex", loc="upper right")
 # plt.show()
-=======
 plt.legend(title="Sex", loc="upper right")
 #plt.show()
->>>>>>> 187d1fe959479741eddd0893025ed3f55f32d555
