@@ -6,6 +6,11 @@ FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
 FDAdata_SEX_rem = FDAdata.dropna(subset = ["SEX"])
 cleaned_data = FDAdata_SEX_rem[FDAdata_SEX_rem["PRODUCT"] != "EXEMPTION 4"]
 cleaned_data["PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
+cleaned_data["DESCRIPTION"] = cleaned_data["DESCRIPTION"].str.lower()
+cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"] = cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"].str.lower()
+cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
+
+
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 keep_data = occurrence_data[occurrence_data > 400].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
@@ -39,5 +44,20 @@ vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 #print(vtmd_df.shape)
 gender_counts = vtmd_df["SEX"].value_counts()
 category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
-#print(gender_counts)
-#print(category_counts)
+age_counts = vtmd_df["PATIENT_AGE"].value_counts()
+age_categories = {"<5":0, "<13":0, "<21":0, "<65":0, "65+":0}
+for key, value in age_counts.items():
+    if int(key) < 5:
+        age_categories["<5"] += int(value)
+    elif int(key) < 13:
+        age_categories["<13"] += int(value)
+    elif int(key) < 21:
+        age_categories["<21"] += int(value)
+    elif int(key) < 65:
+        age_categories["<65"] += int(value)
+    else:
+        age_categories["65+"] += int(value)
+
+print(gender_counts)
+print(category_counts)
+print(age_categories)
