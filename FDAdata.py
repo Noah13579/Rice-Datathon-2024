@@ -16,10 +16,12 @@ occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
 sbp_df = sbp_df.dropna(subset = "PATIENT_AGE") #shape = (511, 13)
 sbp_df_men = sbp_df[sbp_df["SEX"] == "Male"] #shape = (510, 13)
+
 #Data set only containing SBP product
 sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
 sbp_df = sbp_df.dropna(subset = "PATIENT_AGE")
 
+#multivitamin data
 multivitamin_data = finished_data[finished_data["PRODUCT"] == "multivitamin"]
 multivitamin_data["SEX"] = multivitamin_data["SEX"].str.lower()
 multivit_wom_data = multivitamin_data[multivitamin_data["SEX"] != "male"]
