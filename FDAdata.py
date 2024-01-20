@@ -16,6 +16,7 @@ occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"]
 sbp_df = sbp_df.dropna(subset = "PATIENT_AGE")
 
+#MultiVitamin Data Split into Sexes
 multivitamin_data = finished_data[finished_data["PRODUCT"] == "multivitamin"]
 multivitamin_data["SEX"] = multivitamin_data["SEX"].str.lower()
 multivit_wom_data = multivitamin_data[multivitamin_data["SEX"] != "male"]
