@@ -15,8 +15,8 @@ cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
 cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 #Noah
-#
-
+#combining supplements
+supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("fish oil", case=False, na=False)]
 
 
 
