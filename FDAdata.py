@@ -33,9 +33,12 @@ supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("fish oil", ca
 #
 
 #Aden
-#combinining vitamin products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12*.)|(.*b-12*.)", "Vitamin B", regex = True)
-
+#combinining vitamin B products
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12*.)|(.*b-12*.)", "vitamin b", regex = True)
+#Combining vitamin D products
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vit-d.*)|(.*vitamin d.*)|(.*vitamin d3.*)|(.*d3.*)|", "vitamin d", regex = True)
+#Combining vitamin C products
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*emergen-c.*)", "vitamin c", regex = True)
 
 
 
