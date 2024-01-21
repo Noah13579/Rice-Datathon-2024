@@ -190,13 +190,29 @@ plt.show()
 
 
 
+#Supplements
+fish_oil_df = finished_data[finished_data['PRODUCT'] == "fish oil"]
+sns.histplot(fish_oil_df["PATIENT_AGE"], bins = 5, kde = True)
+plt.xlabel("Age")
+plt.ylabel("# Adverse Side affects")
+plt.title("Age vs # Adverse side affects (fish oil)")
+plt.show()
 
+#all supplements graph
+supplements_df = finished_data[(finished_data["PRODUCT"] == "fish oil") | (finished_data["PRODUCT"] == "beta prostate") | (finished_data["PRODUCT"] == "hydroxycut") | (finished_data["PRODUCT"] == "magnesium") | (finished_data["PRODUCT"] == "coq-10") | (finished_data["PRODUCT"] == "biotin")]
+supplements_df = supplements_df[(supplements_df["SEX"] == "male") | (supplements_df["SEX"] == "female")]
+supplements_df.groupby(by = ["SEX"]).mean
 
+#Type of Vitamins plotted against average age 
+palette = ['#E9619E', '#76C1F3']
+sns.barplot(data=supplements_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1, palette= palette)
+plt.xlabel("Type of Supplement")
+plt.ylabel("Average Age of Consumer")
+plt.title("Type of Supplement vs. Average Age")
 
-
-
-
-
+# Show the plot
+plt.legend(title="SEX", loc="upper right")
+plt.show()
 
 # #Data set only containing SBP product
 # sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
