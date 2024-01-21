@@ -15,7 +15,6 @@ cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
 cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 #Noah
-#
 
 
 
@@ -65,12 +64,13 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn pr
 print("Here")
 print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
 #combining peanut butters
-
-occpb_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("peanut butter", case=False, na=False)]
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
 print(f'peanut butter count is {cleaned_data["PRODUCT"].value_counts()["peanut butter"]}')
+#combining chobanis
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*chobani.*', 'chobani', regex = True)
 
-
+#combine energy drinks
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*energy.*', 'energy drink', regex = True)
 
 
 
