@@ -1,5 +1,5 @@
 body {
-  font-family: 'Courier New', monospace;
+  font-family: font-family: 'Courier New', monospace;
   text-align: center;
   background-color: #ffffff;
   display: flex;
@@ -11,7 +11,7 @@ button{
   height: 240px;
   border-radius: 12px;
 }
-
+}
 .sidebar{
   width: 250px;
   height: 100vh;
