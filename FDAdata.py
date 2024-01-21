@@ -184,8 +184,12 @@ labels = ['0-20', '21-40', '41-64','65+']
 
 
 #Vitamins subdf
-vitamins_df = finished_data[(finished_data["PRODUCT"] == "multi vitamin") | (finished_data["PRODUCT"] == "vitamin d") | (finished_data["PRODUCT"] == "vitamin b") | (finished_data["PRODUCT"] == "vitamin c") | (finished_data["PRODUCT"] == "centrum vitamins") | (finished_data["PRODUCT"] == "vitamin a")]
-vitamins_df = vitamins_df[(vitamins_df["SEX"] == "male") | (vitamins_df["SEX"] == "female")]
+vitamins_df = finished_data[(finished_data["PRODUCT"] == "multi vitamin") | (finished_data["PRODUCT"] == "vitamin d") | (finished_data["PRODUCT"] == "vitamin b") | (finished_data["PRODUCT"] == "vitamin c") | (finished_data["PRODUCT"] == "centrum vitamins")]
+
+#Vitamins and Side Effect Severity 
+#vitamins_df_severity = vitamins_df[(vitamins_df["CASE_OUTCOME"] )]
+print(finished_data["CASE_OUTCOME"].value_counts())
+
 vitamins_df.groupby(by = ["SEX"]).mean
 
 #Type of Vitamins plotted against average age 
@@ -195,38 +199,54 @@ palette = ['#E9619E', '#76C1F3']
 #plt.ylabel("Average Age of Consumer")
 #plt.title("Type of Vitamins vs. Average Age")
 
-vitamins_df_multi = vitamins_df[vitamins_df["PRODUCT"] == "multi vitamin"]
-#print("multi vitamin")
-#print(vitamins_df_multi["SEX"].value_counts())
-vitamins_df_d = vitamins_df[vitamins_df["PRODUCT"] == "vitamin d"]
-#print("vitamin d")
-#print(vitamins_df_d["SEX"].value_counts())
-vitamins_df_c = vitamins_df[vitamins_df["PRODUCT"] == "vitamin b"]
-#print("vitamin c")
-#print(vitamins_df_c["SEX"].value_counts())
-vitamins_df_b = vitamins_df[vitamins_df["PRODUCT"] == "vitamin c"]
-#print("vitamin b")
-#print(vitamins_df_b["SEX"].value_counts())
-vitamins_df_a = vitamins_df[vitamins_df["PRODUCT"] == "vitamin a"]
-#print("vitamin a")
-#print(vitamins_df_a["SEX"].value_counts())
-vitamins_df_centrum = vitamins_df[vitamins_df["PRODUCT"] == "centrum vitamins"]
-#print("centrum vitamins")
-#print(vitamins_df_centrum["SEX"].value_counts())
+# vitamins_df_multi = vitamins_df[vitamins_df["PRODUCT"] == "multi vitamin"]
+# print("multi vitamin")
+# print(vitamins_df_multi["SEX"].value_counts())
+# vitamins_df_d = vitamins_df[vitamins_df["PRODUCT"] == "vitamin d"]
+# print("vitamin d")
+# print(vitamins_df_d["SEX"].value_counts())
+# vitamins_df_c = vitamins_df[vitamins_df["PRODUCT"] == "vitamin b"]
+# print("vitamin c")
+# print(vitamins_df_c["SEX"].value_counts())
+# vitamins_df_b = vitamins_df[vitamins_df["PRODUCT"] == "vitamin c"]
+# print("vitamin b")
+# print(vitamins_df_b["SEX"].value_counts())
+# vitamins_df_a = vitamins_df[vitamins_df["PRODUCT"] == "vitamin a"]
+# print("vitamin a")
+# print(vitamins_df_a["SEX"].value_counts())
+# vitamins_df_centrum = vitamins_df[vitamins_df["PRODUCT"] == "centrum vitamins"]
+# print("centrum vitamins")
+# print(vitamins_df_centrum["SEX"].value_counts())
 
 # Show the plot
-#plt.legend(title="SEX", loc="upper right")
-#plt.show()
+plt.legend(title="SEX", loc="upper right")
+plt.show()
 
 
 
+#Supplements
+fish_oil_df = finished_data[finished_data['PRODUCT'] == "fish oil"]
+sns.histplot(fish_oil_df["PATIENT_AGE"], bins = 5, kde = True)
+plt.xlabel("Age")
+plt.ylabel("# Adverse Side affects")
+plt.title("Age vs # Adverse side affects (fish oil)")
+plt.show()
 
+#all supplements graph
+supplements_df = finished_data[(finished_data["PRODUCT"] == "fish oil") | (finished_data["PRODUCT"] == "beta prostate") | (finished_data["PRODUCT"] == "hydroxycut") | (finished_data["PRODUCT"] == "magnesium") | (finished_data["PRODUCT"] == "coq-10") | (finished_data["PRODUCT"] == "biotin")]
+supplements_df = supplements_df[(supplements_df["SEX"] == "male") | (supplements_df["SEX"] == "female")]
+supplements_df.groupby(by = ["SEX"]).mean
 
+#Type of Vitamins plotted against average age 
+palette = ['#E9619E', '#76C1F3']
+sns.barplot(data=supplements_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1, palette= palette)
+plt.xlabel("Type of Supplement")
+plt.ylabel("Average Age of Consumer")
+plt.title("Type of Supplement vs. Average Age")
 
-
-
-
-
+# Show the plot
+plt.legend(title="SEX", loc="upper right")
+plt.show()
 
 # #Data set only containing SBP product
 # sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
