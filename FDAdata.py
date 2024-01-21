@@ -16,7 +16,7 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 #Noah
 #combining supplements
-supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("fish oil", case=False, na=False)]
+supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("(fish oil)|(omega-3)|(omega3)|(Prevagen)|(Co q-10)|(coq10)|(Hydroxycut)|(probiotics*)", case=False, na=False, regex = True)]
 
 
 
@@ -59,11 +59,11 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*em
 
 #combining quorn products 
 occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
-print("Here")
-print(occ_df['PRODUCT'].value_counts())
+#print("Here")
+#print(occ_df['PRODUCT'].value_counts())
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
-print("Here")
-print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
+#print("Here")
+#print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
 #combining peanut buttters
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
 
