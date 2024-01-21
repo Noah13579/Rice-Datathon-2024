@@ -36,10 +36,38 @@ cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostat
 
 
 
-
-
-
-
+prevagen_data = cleaned_data[cleaned_data["PRODUCT"].str.contains("prevagen", na = True, case = False, regex = True)]
+print(prevagen_data.shape)
+occurance5 = prevagen_data["PATIENT_AGE"].value_counts()
+print(occurance5)
+prevagen_data_deaths = prevagen_data[prevagen_data["CASE_OUTCOME"].str.contains("death", case = False, regex = True)]
+print(prevagen_data_deaths.shape)
+prevagen_data_hospit = prevagen_data[prevagen_data["CASE_OUTCOME"].str.contains("hospitalization", case = False, regex = True)]
+print(prevagen_data_hospit.shape)
+prevagen_data_seri = prevagen_data[prevagen_data["CASE_OUTCOME"].str.contains("other serious", case = False, regex = True)]
+print(prevagen_data_seri.shape)
+kratom_death_baby = prevagen_data[prevagen_data["PATIENT_AGE"] < 5]
+kratom_death_todd = prevagen_data[prevagen_data["PATIENT_AGE"] > 5]
+kratom_death_todd = prevagen_data[prevagen_data["PATIENT_AGE"] < 13]
+kratom_death_teen = prevagen_data[prevagen_data["PATIENT_AGE"] > 12]
+kratom_death_teen = prevagen_data[prevagen_data["PATIENT_AGE"] < 21]
+kratom_death_adult_y = prevagen_data[prevagen_data["PATIENT_AGE"] > 20]
+kratom_death_adult_y = prevagen_data[prevagen_data["PATIENT_AGE"] < 40]
+kratom_death_adult_o = prevagen_data[prevagen_data["PATIENT_AGE"] > 39]
+kratom_death_adult_o = prevagen_data[prevagen_data["PATIENT_AGE"] < 65]
+kratom_death_sen = prevagen_data[prevagen_data["PATIENT_AGE"] > 65]
+counts = [
+    kratom_death_baby.shape[0] +
+    kratom_death_todd.shape[0] +
+    kratom_death_teen.shape[0] +
+    kratom_death_adult_y.shape[0],
+    kratom_death_adult_o.shape[0],
+    kratom_death_sen.shape[0]
+]
+labels = ['0-40', '41-64','65+']
+#plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=140)
+#plt.title('Prevagen Reports by Age Group')
+#plt.show()
 
 
 
@@ -125,9 +153,9 @@ occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 death_data = cleaned_data[cleaned_data["CASE_OUTCOME"].str.contains("death", case = False, regex = True)]
 occurrence_data_3 = death_data["PRODUCT"].value_counts()
 kratom_death = death_data[death_data["PRODUCT"].str.contains('kratom')]
-print(kratom_death)
+#print(kratom_death)
 occurrence_death = kratom_death['PATIENT_AGE'].value_counts()
-print(occurrence_death)
+#print(occurrence_death)
 kratom_death_baby = kratom_death[kratom_death["PATIENT_AGE"] < 5]
 kratom_death_todd = kratom_death[kratom_death["PATIENT_AGE"] > 5]
 kratom_death_todd = kratom_death[kratom_death["PATIENT_AGE"] < 13]
@@ -147,12 +175,12 @@ counts = [
     kratom_death_sen.shape[0]
 ]
 labels = ['0-20', '21-40', '41-64','65+']
-plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=140)
-plt.title('Kratom Deaths by Age Group')
-plt.show()
+#plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=140)
+#plt.title('Kratom Deaths by Age Group')
+#plt.show()
 
 #Data set only containing SBP product
-print(occurrence_data_2)
+#print(occurrence_data_2)
 
 
 #Vitamins subdf
@@ -162,33 +190,33 @@ vitamins_df.groupby(by = ["SEX"]).mean
 
 #Type of Vitamins plotted against average age 
 palette = ['#E9619E', '#76C1F3']
-sns.barplot(data=vitamins_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1, palette= palette)
-plt.xlabel("Type of Vitamin")
-plt.ylabel("Average Age of Consumer")
-plt.title("Type of Vitamins vs. Average Age")
+#sns.barplot(data=vitamins_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1, palette= palette)
+#plt.xlabel("Type of Vitamin")
+#plt.ylabel("Average Age of Consumer")
+#plt.title("Type of Vitamins vs. Average Age")
 
 vitamins_df_multi = vitamins_df[vitamins_df["PRODUCT"] == "multi vitamin"]
-print("multi vitamin")
-print(vitamins_df_multi["SEX"].value_counts())
+#print("multi vitamin")
+#print(vitamins_df_multi["SEX"].value_counts())
 vitamins_df_d = vitamins_df[vitamins_df["PRODUCT"] == "vitamin d"]
-print("vitamin d")
-print(vitamins_df_d["SEX"].value_counts())
+#print("vitamin d")
+#print(vitamins_df_d["SEX"].value_counts())
 vitamins_df_c = vitamins_df[vitamins_df["PRODUCT"] == "vitamin b"]
-print("vitamin c")
-print(vitamins_df_c["SEX"].value_counts())
+#print("vitamin c")
+#print(vitamins_df_c["SEX"].value_counts())
 vitamins_df_b = vitamins_df[vitamins_df["PRODUCT"] == "vitamin c"]
-print("vitamin b")
-print(vitamins_df_b["SEX"].value_counts())
+#print("vitamin b")
+#print(vitamins_df_b["SEX"].value_counts())
 vitamins_df_a = vitamins_df[vitamins_df["PRODUCT"] == "vitamin a"]
-print("vitamin a")
-print(vitamins_df_a["SEX"].value_counts())
+#print("vitamin a")
+#print(vitamins_df_a["SEX"].value_counts())
 vitamins_df_centrum = vitamins_df[vitamins_df["PRODUCT"] == "centrum vitamins"]
-print("centrum vitamins")
-print(vitamins_df_centrum["SEX"].value_counts())
+#print("centrum vitamins")
+#print(vitamins_df_centrum["SEX"].value_counts())
 
 # Show the plot
-plt.legend(title="SEX", loc="upper right")
-plt.show()
+#plt.legend(title="SEX", loc="upper right")
+#plt.show()
 
 
 
