@@ -45,11 +45,16 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostate.*', '
 
 #Aden
 #combinining vitamin B products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12*.)|(.*b-12*.)", "vitamin b", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12.*)|(.*b-12.*)|(.*vitamin b complex.*)", "vitamin b", regex = True)
 #Combining vitamin D products
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vit-d.*)|(.*vitamin d.*)|(.*vitamin d3.*)|(.*d3.*)|", "vitamin d", regex = True)
 #Combining vitamin C products
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*emergen-c.*)", "vitamin c", regex = True)
+#Combining Vitamin A
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin a.*)", "vitamin a", regex = True)
+#Combining Multivitamins
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*multivitamin.*)|(.*multi vitamin.*)|(.*multi-vitamin.*)|(.*one a day.*)|(.*centrum.*)", "prenatal vitamins", regex = True)
+
 
 
 
@@ -69,14 +74,13 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*em
 #Angel
 
 #combining quorn products 
-##occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
-##print("Here")
-##print(occ_df['PRODUCT'].value_counts())
+#occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
+#print("Here")
+#print(occ_df['PRODUCT'].value_counts())
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
-##print("Here")
-##print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
-#combining peanut butters
-
+#print("Here")
+#print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
+#combining peanut buttters
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
 
 #combining chobanis
