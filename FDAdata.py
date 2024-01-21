@@ -37,8 +37,12 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*vitamin*.", "quorn 
 #
 
 #combining quorn products 
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn*.", "quorn product", regex = True)
-
+occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
+print("Here")
+print(occ_df['PRODUCT'].value_counts())
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
+print("Here")
+print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
 #combining peanut buttters
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
 
@@ -50,29 +54,6 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|
 
 
 
-
-
-#
-# centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
-# print('here')
-# print(centrum_total.shape)
-# centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
-# centrum_men_final = centrum_men[~centrum_men["PRODUCT"].str.contains("women",case=False, na=False)]
-# print("here")
-# print(centrum_men.shape)
-# print("Here")
-# print(centrum_men_final.shape)
-# centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("women", case=False, na=False)]
-# print('here')
-# print(centrum_women.shape)
-#slight change
-centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)].shape
-print(f'centrum total is {centrum_total}')
-x = cleaned_data['PRODUCT'].replace('.*centrum.*', 'centrum vitamin', regex = True)
-x = cleaned_data[cleaned_data["PRODUCT"] == "centrum vitamin"]
-print(f'x total is {x["PRODUCT"].value_counts()}')
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*centrum.*', 'centrum vitamins', regex = True)
-print(cleaned_data['PRODUCT'].value_counts()['centrum vitamins'])
 
 
 
