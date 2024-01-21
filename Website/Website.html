@@ -9,30 +9,43 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   background-color: #00171F;
+  display: flex;
 }
+
 button{
   font-size: 16px; 
-  width: 360px;
-  height: 360px;
+  width: 240px;
+  height: 240px;
   border-radius: 12px;
 }
 
 .sidebar{
   width: 250px;
   height: 100vh;
-  color: #DBDBDB;
+  color: #00171F;
   padding-top: 20px;
-  background-color: #00171F;
+  background-color: #DBDBDB;
 }
+
+.mainpart{
+  flex-grow: 1;
+}
+
 </style>
 </head>
 <body>
 
-<h1 style="color: #DBDBDB;">Conclusions and Suggestions</h1>
-<p style="color: #DBDBDB;">From our analysis of the data we see that the vitamin category has </p>
-<a href="categorypage.html"><button>First Category</button></a>
-<a href="categorypage.html"><button>Second Category</button></a>
-<a href="categorypage.html"><button>Third Category</button></a>
+<div class = "sidebar">
+  <h2>Our sidebar</h2>
+</div>
+
+<div class = "mainpart">
+  <h1 style="color: #DBDBDB;">Conclusions and Suggestions</h1>
+  <p style="color: #DBDBDB;">From our analysis of the data we see that the vitamin category has </p>
+    <a href="categorypage.html"><button>First Category</button></a>
+    <a href="categorypage.html"><button>Second Category</button></a>
+    <a href="categorypage.html"><button>Third Category</button></a>
+</div>
 
 </body>
 </html>
