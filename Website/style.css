@@ -38,6 +38,9 @@ button{
 .buttons{
   flex-grow: 1;
 }
+.title a{
+  border: 40px solid #ffffff;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -46,6 +49,9 @@ button{
 .content {
   display: flex;
 }
+.title p{
+  border: 40px solid #ffffff;
+}
 /*category page*/
 .title2 {
   width: 1;
@@ -53,4 +59,11 @@ button{
   padding: 0px;
   border: 2px solid #fec6df;
   text-align: center;
+}
+.title2 h1{
+  font-weight:500;
+}
+
+.title2 p{
+  border: 40px solid #ffffff;
 }
