@@ -8,21 +8,21 @@ FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
 cleaned_data = FDAdata[FDAdata["PRODUCT"] != "EXEMPTION 4"]
 
 #transforms columns into lowercase
-cleaned_data["PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
-cleaned_data["DESCRIPTION"] = cleaned_data["DESCRIPTION"].str.lower()
-cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"] = cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"].str.lower()
-cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
-cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
+cleaned_data.loc[:, "PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
+cleaned_data.loc[:, 'DESCRIPTION'] = cleaned_data["DESCRIPTION"].str.lower()
+cleaned_data.loc[:, 'CASE_MEDDRA_PREFERRED_TERMS'] = cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"].str.lower()
+cleaned_data.loc[:, 'CASE_OUTCOME'] = cleaned_data["CASE_OUTCOME"].str.lower()
+cleaned_data.loc[:, 'SEX'] = cleaned_data["SEX"].str.lower()
 
 #Noah
 
 #combining supplements
-cleaned_data['PRODUCT'] = cleaned_data["PRODUCT"].replace("(.*fish oil.*)|(.*omega 3.*)|(.*omega-3.*)", "fish oil", regex = True)
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*prevagen.*", "prevagen", regex = True)
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('(.*co q-10.*)|(.*coq10.*)', "coq-10", regex = True)
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*hydroxycut.*', "hydroxycut", regex = True)
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*probiotics*.*', "probiotic", regex = True)
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostate.*', 'beta prostate', regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data["PRODUCT"].replace("(.*fish oil.*)|(.*omega 3.*)|(.*omega-3.*)", "fish oil", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace(".*prevagen.*", "prevagen", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('(.*co q-10.*)|(.*coq10.*)', "coq-10", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('.*hydroxycut.*', "hydroxycut", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('.*probiotics*.*', "probiotic", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostate.*', 'beta prostate', regex = True)
 
 
 
@@ -45,17 +45,17 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostate.*', '
 
 #Aden
 #combinining vitamin B products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12.*)|(.*b-12.*)|(.*vitamin b complex.*)", "vitamin b", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12.*)|(.*b-12.*)|(.*vitamin b complex.*)", "vitamin b", regex = True)
 #Combining vitamin D products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vit-d.*)|(.*vitamin d.*)|(.*vitamin d3.*)|(.*d3.*)", "vitamin d", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vit-d.*)|(.*vitamin d.*)|(.*vitamin d3.*)|(.*d3.*)", "vitamin d", regex = True)
 #Combining vitamin C products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*emergen-c.*)", "vitamin c", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*emergen-c.*)", "vitamin c", regex = True)
 #Combining Vitamin A
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin a.*)", "vitamin a", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin a.*)", "vitamin a", regex = True)
 #Combining Multivitamins
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*multivitamin.*)|(.*multi vitamin.*)|(.*multi-vitamin.*)|(.*one a day.*)|(.*prenatal vitamins.*)", "multi vitamin", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*multivitamin.*)|(.*multi vitamin.*)|(.*multi-vitamin.*)|(.*one a day.*)|(.*prenatal vitamins.*)", "multi vitamin", regex = True)
 #Combining Centrum
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*centrum.*)", "centrum vitamins", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*centrum.*)", "centrum vitamins", regex = True)
 
 
 
@@ -80,18 +80,18 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*centrum.*)", "cent
 #occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
 #print("Here")
 #print(occ_df['PRODUCT'].value_counts())
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
 #print("Here")
 #print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
 #combining peanut buttters
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
 
 #combining chobanis
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*chobani.*', 'chobani', regex = True)
+cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('.*chobani.*', 'chobani', regex = True)
 
 
 
-print(cleaned_data['PRODUCT'.value_counts()])
+print(cleaned_data['PRODUCT'].value_counts()["centrum vitamins"])
 
 
 
@@ -107,18 +107,18 @@ print(cleaned_data['PRODUCT'.value_counts()])
 
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 
-with open("unique_prod.csv", 'w', newline='') as csvfile:
-    csvwriter = csv.writer(csvfile)
-    csvwriter.writerow(['PRODUCT','NO. of OCCURRENCES'])
-    for product, count in occurrence_data.items():
-        csvwriter.writerow([product, count])
+# with open("unique_prod.csv", 'w', newline='') as csvfile:
+#     csvwriter = csv.writer(csvfile)
+#     csvwriter.writerow(['PRODUCT','NO. of OCCURRENCES'])
+#     for product, count in occurrence_data.items():
+#         csvwriter.writerow([product, count])
 
 #Surface cleaned dataset from which our other datasets are derived
-keep_data = occurrence_data[occurrence_data > 400].index
+keep_data = occurrence_data[occurrence_data > 500].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
 
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
-
+print(occurrence_data_2)
 # #Data set only containing SBP product
 # sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
 # #Drop rows without anything in PATIENT_AGE
