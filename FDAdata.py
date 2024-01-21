@@ -15,10 +15,21 @@ cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
 cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 #Noah
-#
+
+#combining supplements
+cleaned_data['PRODUCT'] = cleaned_data["PRODUCT"].replace("(.*fish oil.*)|(.*omega 3.*)|(.*omega-3.*)", "fish oil", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*prevagen.*", "prevagen", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('(.*co q-10.*)|(.*coq10.*)', "coq-10", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*hydroxycut.*', "hydroxycut", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*probiotics*.*', "probiotic", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostate.*', 'beta prostate', regex = True)
 
 
 
+
+# supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("(fish oil)|(omega-3)|(omega3)|(Prevagen)|(Co q-10)|(coq10)|(Hydroxycut)|(probiotics*)|(beta prostate)", case=False, na=False, regex = True)]
+# supp_deaths = supp_products[supp_products["CASE_OUTCOME"].str.contains("deaths*", case=False, na=False, regex = True)]
+#print(supp_deaths)
 
 
 
@@ -34,16 +45,11 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 #Aden
 #combinining vitamin B products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12.*)|(.*b-12.*)|(.*vitamin b complex.*)", "vitamin b", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12*.)|(.*b-12*.)", "vitamin b", regex = True)
 #Combining vitamin D products
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vit-d.*)|(.*vitamin d.*)|(.*vitamin d3.*)|(.*d3.*)|", "vitamin d", regex = True)
 #Combining vitamin C products
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*emergen-c.*)", "vitamin c", regex = True)
-#Combining Vitamin A
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin a.*)", "vitamin a", regex = True)
-#Combining Multivitamins
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*multivitamin.*)|(.*multi vitamin.*)|(.*multi-vitamin.*)|(.*one a day.*)|(.*centrum.*)", "prenatal vitamins", regex = True)
-
 
 
 
@@ -63,14 +69,21 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*multivitamin.*)|(.
 #Angel
 
 #combining quorn products 
-#occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
-#print("Here")
-#print(occ_df['PRODUCT'].value_counts())
+##occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
+##print("Here")
+##print(occ_df['PRODUCT'].value_counts())
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
-#print("Here")
-#print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
-#combining peanut buttters
+##print("Here")
+##print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
+#combining peanut butters
+
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
+
+#combining chobanis
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*chobani.*', 'chobani', regex = True)
+
+
+
 
 
 
