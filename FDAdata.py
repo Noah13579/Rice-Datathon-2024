@@ -6,6 +6,8 @@ import csv
 #reads data file and removes rows with EXEMPTION 4 in PRODUCT column
 FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
 cleaned_data = FDAdata[FDAdata["PRODUCT"] != "EXEMPTION 4"]
+#determines how many unique cases
+intermediate_df = cleaned_data[cleaned_data["PRODUCT_TYPE"] == "SUSPECT"] #109173 unique cases
 
 #transforms columns into lowercase
 cleaned_data.loc[:, "PRODUCT"] = cleaned_data["PRODUCT"].str.lower()
