@@ -158,6 +158,10 @@ print(occurrence_data_2)
 #Vitamins subdf
 vitamins_df = finished_data[(finished_data["PRODUCT"] == "multi vitamin") | (finished_data["PRODUCT"] == "vitamin d") | (finished_data["PRODUCT"] == "vitamin b") | (finished_data["PRODUCT"] == "vitamin c") | (finished_data["PRODUCT"] == "centrum vitamins") | (finished_data["PRODUCT"] == "vitamin a")]
 vitamins_df = vitamins_df[(vitamins_df["SEX"] == "male") | (vitamins_df["SEX"] == "female")]
+
+#Vitamins and Side Effect Severity 
+#vitamins_df_severity = vitamins_df[(vitamins_df["CASE_OUTCOME"])]
+
 vitamins_df.groupby(by = ["SEX"]).mean
 
 #Type of Vitamins plotted against average age 
@@ -167,24 +171,24 @@ plt.xlabel("Type of Vitamin")
 plt.ylabel("Average Age of Consumer")
 plt.title("Type of Vitamins vs. Average Age")
 
-vitamins_df_multi = vitamins_df[vitamins_df["PRODUCT"] == "multi vitamin"]
-print("multi vitamin")
-print(vitamins_df_multi["SEX"].value_counts())
-vitamins_df_d = vitamins_df[vitamins_df["PRODUCT"] == "vitamin d"]
-print("vitamin d")
-print(vitamins_df_d["SEX"].value_counts())
-vitamins_df_c = vitamins_df[vitamins_df["PRODUCT"] == "vitamin b"]
-print("vitamin c")
-print(vitamins_df_c["SEX"].value_counts())
-vitamins_df_b = vitamins_df[vitamins_df["PRODUCT"] == "vitamin c"]
-print("vitamin b")
-print(vitamins_df_b["SEX"].value_counts())
-vitamins_df_a = vitamins_df[vitamins_df["PRODUCT"] == "vitamin a"]
-print("vitamin a")
-print(vitamins_df_a["SEX"].value_counts())
-vitamins_df_centrum = vitamins_df[vitamins_df["PRODUCT"] == "centrum vitamins"]
-print("centrum vitamins")
-print(vitamins_df_centrum["SEX"].value_counts())
+# vitamins_df_multi = vitamins_df[vitamins_df["PRODUCT"] == "multi vitamin"]
+# print("multi vitamin")
+# print(vitamins_df_multi["SEX"].value_counts())
+# vitamins_df_d = vitamins_df[vitamins_df["PRODUCT"] == "vitamin d"]
+# print("vitamin d")
+# print(vitamins_df_d["SEX"].value_counts())
+# vitamins_df_c = vitamins_df[vitamins_df["PRODUCT"] == "vitamin b"]
+# print("vitamin c")
+# print(vitamins_df_c["SEX"].value_counts())
+# vitamins_df_b = vitamins_df[vitamins_df["PRODUCT"] == "vitamin c"]
+# print("vitamin b")
+# print(vitamins_df_b["SEX"].value_counts())
+# vitamins_df_a = vitamins_df[vitamins_df["PRODUCT"] == "vitamin a"]
+# print("vitamin a")
+# print(vitamins_df_a["SEX"].value_counts())
+# vitamins_df_centrum = vitamins_df[vitamins_df["PRODUCT"] == "centrum vitamins"]
+# print("centrum vitamins")
+# print(vitamins_df_centrum["SEX"].value_counts())
 
 # Show the plot
 plt.legend(title="SEX", loc="upper right")
