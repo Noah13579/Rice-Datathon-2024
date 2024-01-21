@@ -17,9 +17,9 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 #Noah
 
 #combining supplements
-supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("(fish oil)|(omega-3)|(omega3)|(Prevagen)|(Co q-10)|(coq10)|(Hydroxycut)|(probiotics*)", case=False, na=False, regex = True)]
-
-
+supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("(fish oil)|(omega-3)|(omega3)|(Prevagen)|(Co q-10)|(coq10)|(Hydroxycut)|(probiotics*)|(beta prostate)", case=False, na=False, regex = True)]
+supp_deaths = supp_products[supp_products["CASE_OUTCOME"].str.contains("deaths*", case=False, na=False, regex = True)]
+#print(supp_deaths)
 
 
 
