@@ -47,18 +47,27 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace()
 
 
 #
-centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
-print('here')
-print(centrum_total.shape)
-centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
-centrum_men_final = centrum_men[~centrum_men["PRODUCT"].str.contains("women",case=False, na=False)]
-print("here")
-print(centrum_men.shape)
-print("Here")
-print(centrum_men_final.shape)
-centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("women", case=False, na=False)]
-print('here')
-print(centrum_women.shape)
+# centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
+# print('here')
+# print(centrum_total.shape)
+# centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
+# centrum_men_final = centrum_men[~centrum_men["PRODUCT"].str.contains("women",case=False, na=False)]
+# print("here")
+# print(centrum_men.shape)
+# print("Here")
+# print(centrum_men_final.shape)
+# centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("women", case=False, na=False)]
+# print('here')
+# print(centrum_women.shape)
+
+centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)].shape
+print(f'centrum total is {centrum_total}')
+x = cleaned_data['PRODUCT'].replace(' ', 'centrum vitamin', regex = True)
+x = cleaned_data[cleaned_data["PRODUCT"] == "centrum vitamin"]
+print(f'x total is {x["PRODUCT"].value_counts()}')
+
+
+
 
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 
@@ -109,7 +118,7 @@ for age, reports in age_counts.items():
     age_array.append(age)
     number_reports.append(age_counts[age])
 plt.scatter(age_array, number_reports)
-plt.show()
+#plt.show()
 
 #Data set only containing vitamin products
 vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
@@ -119,7 +128,7 @@ category_counts = vtmd_df["CASE_MEDDRA_PREFERRED_TERMS"].value_counts()
 
 #Data set only containing Vitamin D
 description_counts = finished_data["DESCRIPTION"].value_counts()
-print(description_counts)
+#print(description_counts)
 vtmd_df = finished_data[finished_data["PRODUCT"] == "vitamin d"]
 
 
