@@ -14,8 +14,25 @@ cleaned_data["CASE_MEDDRA_PREFERRED_TERMS"] = cleaned_data["CASE_MEDDRA_PREFERRE
 cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
 cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
+#Noah
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #
+
+#Aden
 #combinining vitamin products
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12*.)|(.*b-12*.)", "Vitamin B", regex = True)
 
@@ -34,7 +51,8 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vi
 
 
 #
-#
+
+#Angel
 
 #combining quorn products 
 occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, na=False)]
