@@ -159,7 +159,8 @@ print(occurrence_data_2)
 vitamins_df = finished_data[(finished_data["PRODUCT"] == "multi vitamin") | (finished_data["PRODUCT"] == "vitamin d") | (finished_data["PRODUCT"] == "vitamin b") | (finished_data["PRODUCT"] == "vitamin c") | (finished_data["PRODUCT"] == "centrum vitamins")]
 
 #Vitamins and Side Effect Severity 
-vitamins_df_severity = vitamins_df[(vitamins_df["CASE_OUTCOME"] )]
+#vitamins_df_severity = vitamins_df[(vitamins_df["CASE_OUTCOME"] )]
+print(finished_data["CASE_OUTCOME"].value_counts())
 
 vitamins_df.groupby(by = ["SEX"]).mean
 
