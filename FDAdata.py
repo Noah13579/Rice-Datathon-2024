@@ -47,9 +47,6 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace()
 
 
 #
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('^centrum', 'centrum vitamin', regex = True)
-centrum_counts = cleaned_data['PRODUCT'].value_counts()['centrum vitamin']
-print(centrum_counts)
 centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
 print('here')
 print(centrum_total.shape)
