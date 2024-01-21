@@ -59,7 +59,7 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace()
 # centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("women", case=False, na=False)]
 # print('here')
 # print(centrum_women.shape)
-
+#slight change
 centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)].shape
 print(f'centrum total is {centrum_total}')
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*centrum.*', 'centrum vitamins', regex = True)
