@@ -25,18 +25,10 @@ button{
   height: 100vh;
   color: #00171F;
   padding-top: 20px;
+  border-radius: 100px;
   background-color: #f9e7ee;
 }
 
 .buttons{
   flex-grow: 1;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  display: flex;
 }
