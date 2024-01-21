@@ -119,6 +119,36 @@ finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
 
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
 print(occurrence_data_2)
+
+
+#Vitamins subdf
+vitamins_df = finished_data[(finished_data["PRODUCT"] == "multi vitamin") | (finished_data["PRODUCT"] == "vitamin d") | (finished_data["PRODUCT"] == "vitamin b") | (finished_data["PRODUCT"] == "vitamin c") | (finished_data["PRODUCT"] == "centrum vitamins")]
+vitamins_df = vitamins_df[(vitamins_df["SEX"] == "male") | (vitamins_df["SEX"] == "female")]
+vitamins_df.groupby(by = ["SEX"]).mean
+
+#Type of Vitamins plotted against average age 
+palette = ['#E9619E', '#76C1F3']
+sns.barplot(data=vitamins_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1, palette= palette)
+plt.xlabel("Type of Vitamin")
+plt.ylabel("Average Age of Consumer")
+plt.title("Type of Vitamins vs. Average Age")
+
+print(vitamins_df["SEX"].value_counts())
+
+# Show the plot
+plt.legend(title="SEX", loc="upper right")
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
 # #Data set only containing SBP product
 # sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
 # #Drop rows without anything in PATIENT_AGE
