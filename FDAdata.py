@@ -34,7 +34,7 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 #
 #
 
-
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace()
 
 
 
@@ -51,9 +51,17 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('^centrum', 'centrum v
 centrum_counts = cleaned_data['PRODUCT'].value_counts()['centrum vitamin']
 print(centrum_counts)
 centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
+print('here')
+print(centrum_total.shape)
 centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
-centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("wommen", case=False, na=False)]
-
+centrum_men_final = centrum_men[~centrum_men["PRODUCT"].str.contains("women",case=False, na=False)]
+print("here")
+print(centrum_men.shape)
+print("Here")
+print(centrum_men_final.shape)
+centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("women", case=False, na=False)]
+print('here')
+print(centrum_women.shape)
 
 occurrence_data = cleaned_data["PRODUCT"].value_counts()
 
