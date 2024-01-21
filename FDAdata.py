@@ -34,7 +34,11 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 #
 #
 
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace()
+#combining quorn products 
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn*.", "quorn product", regex = True)
+
+#combining peanut buttters
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
 
 
 
