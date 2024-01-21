@@ -15,6 +15,7 @@ cleaned_data["CASE_OUTCOME"] = cleaned_data["CASE_OUTCOME"].str.lower()
 cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 
+#
 
 
 
@@ -30,10 +31,22 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 
 
+#
+#
 
 
 
 
+
+
+
+
+
+
+
+
+
+#
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('^centrum', 'centrum vitamin', regex = True)
 centrum_counts = cleaned_data['PRODUCT'].value_counts()['centrum vitamin']
 print(centrum_counts)
