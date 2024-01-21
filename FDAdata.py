@@ -1,6 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import csv
 
 #reads data file and removes rows with EXEMPTION 4 in PRODUCT column
 FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
@@ -19,11 +20,18 @@ print(centrum_counts)
 centrum_total = cleaned_data[cleaned_data["PRODUCT"].str.contains("centrum", case=False, na=False)]
 centrum_men = centrum_total[centrum_total["PRODUCT"].str.contains("men", case=False, na=False)]
 centrum_women = centrum_total[centrum_total["PRODUCT"].str.contains("wommen", case=False, na=False)]
-#groups together products that have a fuzzywuzzy percentage >= 80
+
+
+occurrence_data = cleaned_data["PRODUCT"].value_counts()
+
+with open("unique_prod.csv", 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(['PRODUCT','NO. of OCCURRENCES'])
+    for product, count in occurrence_data.items():
+        csvwriter.writerow([product, count])
 
 
 #Surface cleaned dataset from which our other datasets are derived
-occurrence_data = cleaned_data["PRODUCT"].value_counts()
 keep_data = occurrence_data[occurrence_data > 400].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
 
@@ -105,23 +113,17 @@ vitamin_d3_men = vitamin_d3[vitamin_d3["SEX"] == "male"] #shape = (, 13)
 
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None)
 
-<<<<<<< HEAD
 plt.figure(figsize=(16, 8))
 
 occurrence_data_3 = vtmd_df["PRODUCT"].value_counts()
 
 sns.barplot(data=vtmd_df, x="PRODUCT", y="PATIENT_AGE", hue="SEX", errorbar=None, width=0.4, dodge=0.1)
-=======
->>>>>>> 187d1fe959479741eddd0893025ed3f55f32d555
 plt.xlabel("Products")
 plt.ylabel("Average Age")
 plt.title("Average Age by Products and Sex")
 
 # Show the plot
-<<<<<<< HEAD
 # plt.legend(title="Sex", loc="upper right")
 # plt.show()
-=======
 plt.legend(title="Sex", loc="upper right")
 #plt.show()
->>>>>>> 187d1fe959479741eddd0893025ed3f55f32d555
