@@ -6,7 +6,7 @@ body {
 
 button{
   font-family: 'Courier New', 'monospace';
-  background-color: #f9f2e0;
+  background-color: #fbf1e8;
   font-size: 16px; 
   width: 240px;
   height: 240px;
@@ -14,24 +14,33 @@ button{
 }
 .title {
   width: 1;
-  height: 100px;
-  padding: 5px;
+  height: 75px;
+  padding: 0px;
   border: 2px solid #fec6df;
-  border-radius: 100px;
   text-align: center;
+}
+
+.title h1{
+  font-weight:500;
 }
 .sidebar{
   width: 250px;
   height: 100vh;
   color: #00171F;
   padding-top: 20px;
+  border: 25px solid #ffffff;
   background-color: #f9e7ee;
+}
+.sidebar h2{
+  font-weight:500;
 }
 
 .buttons{
   flex-grow: 1;
 }
-
+.title a{
+  border: 40px solid #ffffff;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -39,4 +48,22 @@ button{
 
 .content {
   display: flex;
+}
+.title p{
+  border: 40px solid #ffffff;
+}
+/*category page*/
+.title2 {
+  width: 1;
+  height: 75px;
+  padding: 0px;
+  border: 2px solid #fec6df;
+  text-align: center;
+}
+.title2 h1{
+  font-weight:500;
+}
+
+.title2 p{
+  border: 40px solid #ffffff;
 }
