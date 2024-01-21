@@ -17,7 +17,7 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 
 #
 #combinining vitamin products
-cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*vitamin*.", "quorn product", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*Vitamin B.*)|(.*vitamin b.*)|(.*vitamin b6.*)|(.*b complex.*)|(.*b12*.)|(.*b-12*.)", "Vitamin B", regex = True)
 
 
 
