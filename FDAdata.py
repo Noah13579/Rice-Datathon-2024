@@ -91,7 +91,7 @@ cleaned_data.loc[:, 'PRODUCT'] = cleaned_data['PRODUCT'].replace('.*chobani.*', 
 
 
 
-print(cleaned_data['PRODUCT'].value_counts()["centrum vitamins"])
+#print(cleaned_data['PRODUCT'].value_counts()["centrum vitamins"])
 
 
 
@@ -118,11 +118,41 @@ keep_data = occurrence_data[occurrence_data > 500].index
 finished_data = cleaned_data[cleaned_data["PRODUCT"].isin(keep_data)]
 
 occurrence_data_2 = finished_data["PRODUCT"].value_counts()
-print(occurrence_data_2)
-# #Data set only containing SBP product
+#print(occurrence_data_2)
+
+death_data = cleaned_data[cleaned_data["CASE_OUTCOME"].str.contains("death", case = False, regex = True)]
+occurrence_data_3 = death_data["PRODUCT"].value_counts()
+kratom_death = death_data[death_data["PRODUCT"].str.contains('kratom')]
+print(kratom_death)
+occurrence_death = kratom_death['PATIENT_AGE'].value_counts()
+print(occurrence_death)
+kratom_death_baby = kratom_death[kratom_death["PATIENT_AGE"] < 5]
+kratom_death_todd = kratom_death[kratom_death["PATIENT_AGE"] > 5]
+kratom_death_todd = kratom_death[kratom_death["PATIENT_AGE"] < 13]
+kratom_death_teen = kratom_death[kratom_death["PATIENT_AGE"] > 12]
+kratom_death_teen = kratom_death[kratom_death["PATIENT_AGE"] < 21]
+kratom_death_adult_y = kratom_death[kratom_death["PATIENT_AGE"] > 20]
+kratom_death_adult_y = kratom_death[kratom_death["PATIENT_AGE"] < 40]
+kratom_death_adult_o = kratom_death[kratom_death["PATIENT_AGE"] > 39]
+kratom_death_adult_o = kratom_death[kratom_death["PATIENT_AGE"] < 65]
+kratom_death_sen = kratom_death[kratom_death["PATIENT_AGE"] > 65]
+counts = [
+    kratom_death_baby.shape[0] +
+    kratom_death_todd.shape[0] +
+    kratom_death_teen.shape[0],
+    kratom_death_adult_y.shape[0],
+    kratom_death_adult_o.shape[0],
+    kratom_death_sen.shape[0]
+]
+labels = ['0-20', '21-40', '41-64','65+']
+plt.pie(counts, labels=labels, autopct='%1.1f%%', startangle=140)
+plt.title('Kratom Deaths by Age Group')
+plt.show()
+
+#Data set only containing SBP product
 # sbp_df = finished_data[finished_data["PRODUCT"] == "super beta prostate"] #shape = (1036, 13)
 # #Drop rows without anything in PATIENT_AGE
-# sbp_df = sbp_df.dropna(subset = "PATIENT_AGE") #shape = (511, 13)
+# sbp_df = sbp_df.dropna(subset = "PATIENT_AGE") 
 
 # #Data set only containing SBP product reported by men (only one woman reported)
 # sbp_df_men = sbp_df[sbp_df["SEX"] == "Male"] #shape = (510, 13)
