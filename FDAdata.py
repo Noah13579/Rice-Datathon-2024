@@ -64,8 +64,14 @@ occ_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("quorn", case=False, 
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*quorn.*", "quorn product", regex = True)
 #print("Here")
 #print(f'count is {cleaned_data["PRODUCT"].value_counts()["quorn product"]}')
-#combining peanut buttters
+#combining peanut butters
+
+occpb_df = cleaned_data[cleaned_data["PRODUCT"].str.contains("peanut butter", case=False, na=False)]
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*peanut\sbutter.*)|(.*peanutbutter.*)", "peanut butter", regex = True)
+print(f'peanut butter count is {cleaned_data["PRODUCT"].value_counts()["peanut butter"]}')
+
+
+
 
 
 
