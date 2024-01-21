@@ -17,8 +17,18 @@ cleaned_data["SEX"] = cleaned_data["SEX"].str.lower()
 #Noah
 
 #combining supplements
-supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("(fish oil)|(omega-3)|(omega3)|(Prevagen)|(Co q-10)|(coq10)|(Hydroxycut)|(probiotics*)|(beta prostate)", case=False, na=False, regex = True)]
-supp_deaths = supp_products[supp_products["CASE_OUTCOME"].str.contains("deaths*", case=False, na=False, regex = True)]
+cleaned_data['PRODUCT'] = cleaned_data["PRODUCT"].replace("(.*fish oil.*)|(.*omega 3.*)|(.*omega-3.*)", "fish oil", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace(".*prevagen.*", "prevagen", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('(.*co q-10.*)|(.*coq10.*)', "coq-10", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*hydroxycut.*', "hydroxycut", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*probiotics*.*', "probiotic", regex = True)
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace('.*beta prostate.*', 'beta prostate', regex = True)
+
+
+
+
+# supp_products = cleaned_data[cleaned_data["PRODUCT"].str.contains("(fish oil)|(omega-3)|(omega3)|(Prevagen)|(Co q-10)|(coq10)|(Hydroxycut)|(probiotics*)|(beta prostate)", case=False, na=False, regex = True)]
+# supp_deaths = supp_products[supp_products["CASE_OUTCOME"].str.contains("deaths*", case=False, na=False, regex = True)]
 #print(supp_deaths)
 
 
