@@ -54,6 +54,9 @@ cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin c.*)|(.*em
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*vitamin a.*)", "vitamin a", regex = True)
 #Combining Multivitamins
 cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*multivitamin.*)|(.*multi vitamin.*)|(.*multi-vitamin.*)|(.*one a day.*)|(.*prenatal vitamins.*)", "multi vitamin", regex = True)
+#Combining Centrum
+cleaned_data['PRODUCT'] = cleaned_data['PRODUCT'].replace("(.*centrum.*)", "centrum vitamins", regex = True)
+
 
 
 
