@@ -20,15 +20,22 @@ button{
   text-align: center;
 }
 .sidebar img{
-  width: 300px;
+  width: 350px;
   height: auto;
+  transition: transform .2s;
+  margin:0 auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+img:hover{
+    transform:scale(2.5);
 }
 
 .title h1{
   font-weight:500;
 }
-.sidebar{
-  width: 400px;
+.sidebar {
+  width: 450px;
   height: 100vh;
   color: #00171F;
   padding-top: 20px;
@@ -41,6 +48,7 @@ button{
 
 .buttons{
   flex-grow: 1;
+  border: 30px solid #ffffff;
 }
 .title a{
   border: 40px solid #ffffff;
@@ -52,9 +60,6 @@ button{
 
 .content {
   display: flex;
-}
-.title p{
-  border: 40px solid #ffffff;
 }
 /*category page*/
 .title2 {
@@ -71,3 +76,21 @@ button{
 .title2 p{
   border: 40px solid #ffffff;
 }
+
+.searchable sortable {
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    text-align: center;
+}
+
+
+th {
+  background-color: #f76fa7;
+  color: white;
+}
+th, td {
+  padding: 15px;
+  text-align: center;
+}
+tr:hover {background-color: rgb(255, 202, 225);}
