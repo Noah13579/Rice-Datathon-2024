@@ -6,6 +6,7 @@ import csv
 #reads data file and removes rows with EXEMPTION 4 in PRODUCT column
 FDAdata = pd.read_csv('./CAERS_ProductBased.csv')
 cleaned_data = FDAdata[FDAdata["PRODUCT"] != "EXEMPTION 4"]
+cleaned_data = cleaned_data.dropna(subset=["PATIENT_AGE","SEX"])
 #determines how many unique cases
 intermediate_df = cleaned_data[cleaned_data["PRODUCT_TYPE"] == "SUSPECT"] #109173 unique cases
 
@@ -188,7 +189,17 @@ vitamins_df = finished_data[(finished_data["PRODUCT"] == "multi vitamin") | (fin
 
 #Vitamins and Side Effect Severity 
 #vitamins_df_severity = vitamins_df[(vitamins_df["CASE_OUTCOME"] )]
-print(finished_data["CASE_OUTCOME"].value_counts())
+#print(finished_data["CASE_OUTCOME"].value_counts())
+# notable_mentions = finished_data[(finished_data["PRODUCT"] == "peanut butter") | (finished_data["PRODUCT"] == "quorn product")]
+# print(notable_mentions["PRODUCT"].value_counts())
+# notable_mentions_pb = notable_mentions[(notable_mentions["PRODUCT"] == "peanut butter")]
+# notable_mentions_qu = notable_mentions[(notable_mentions["PRODUCT"] == "quorn product")]
+# print("Peanut Butter")
+# print(notable_mentions_pb["SEX"].value_counts()["male"])
+# print(notable_mentions_pb["SEX"].value_counts()["female"])
+# print("Quorn")
+# print(notable_mentions_qu["SEX"].value_counts()["male"])
+# print(notable_mentions_qu["SEX"].value_counts()["female"])
 
 vitamins_df.groupby(by = ["SEX"]).mean
 
